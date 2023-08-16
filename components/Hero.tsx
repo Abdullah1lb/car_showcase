@@ -22,9 +22,13 @@ handleClick={handleScroll}
 />
       </div>
   <div className="hero__image-container">
-    <div className="hero-image">
-      <Image src='' alt='car'/>
+    <div className="hero__image">
+      <Image src='/hero.png'
+      fill 
+      className="object-contain"
+      alt='hero'/>
     </div>
+      <div className="hero__image-overlay"/>
   </div>
     </div>
   )
