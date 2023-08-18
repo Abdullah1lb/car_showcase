@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { CarProps } from "@/types";
 import { calculateCarRent } from "@/utils";
+import CustomButton from "./CustomButton";
+import { CarDetails } from ".";
 
 type CarCardProps = {
   car: CarProps;
 };
 const CarCard = ({ car }: CarCardProps) => {
   const [first, setfirst] = useState("");
+  const [isOpen,setisOpen]=useState(false)
   const { city_mpg, year, make, model, transmission, drive } = car;
   const carRent = calculateCarRent(city_mpg, year);
   return (
@@ -45,8 +48,43 @@ const CarCard = ({ car }: CarCardProps) => {
               {transmission === "a" ? "Automatic" : "Manual"}
             </p>
           </div>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <Image
+              src={"/tire.svg"}
+              width={20}
+              height={20}
+              alt="tire"
+            />
+            <p className="text-[14px]">
+              {drive.toUpperCase()}
+            </p>
+          </div>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <Image
+              src={"/gas.svg"}
+              width={20}
+              height={20}
+              alt="gas"
+            />
+            <p className="text-[14px]">
+              {city_mpg}
+            </p>
+          </div>
+        </div>
+        <div className="car-card__btn-container">
+          <CustomButton
+          title="View More"
+          containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+          textStyles='text-white text-[14px] leading-[17px] font-bold '
+          rightIcon='/right-arrow.svg'
+          handleClick={()=>setisOpen(true)}
+
+          />
         </div>
       </div>
+      <CarDetails
+      isOpen={isOpen} closeModal={()=>setisOpen(false)} car={car}
+      />
     </div>
   );
 };
