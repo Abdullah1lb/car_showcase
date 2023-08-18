@@ -9,6 +9,9 @@ type CarDetailsProps = {
   closeModal: () => void;
   car: CarProps;
 };
+function capitalizeFirstLetter(str:string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
   return (
     <>
@@ -104,7 +107,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                                 {key.split('_').join(" ")}
                             </h4>
                             <p className="text-black-100 font-semibold">
-                                {value}
+                            {typeof value === 'string' ? capitalizeFirstLetter(value) : value}
                             </p>
                         </div>
                       ))}  
