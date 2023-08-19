@@ -6,4 +6,15 @@ import CustomFulter from "./CustomFulter";
 import SearchManufacturer from "./SearchManufacturer";
 import CarCard from "./CarCard";
 import CarDetails from "./CarDetails";
-export { Hero,Navbar,Footer, SearchBar,CustomFulter,SearchManufacturer,CarCard, CarDetails}
+import ShowMore from "./ShowMore";
+export {
+  Hero,
+  Navbar,
+  Footer,
+  SearchBar,
+  CustomFulter,
+  SearchManufacturer,
+  CarCard,
+  CarDetails,
+  ShowMore,
+};
