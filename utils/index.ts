@@ -1,10 +1,10 @@
-import { CarProps } from "@/types";
-export async function fetchCars() {
+import { CarProps, searchCarProps } from "@/types";
+export async function fetchCars({manufacturer,year,fuel,limit,model}:searchCarProps) {
   try{const headers = {
     "X-RapidAPI-Key": "074abcf7d2msh1efa8209fd72868p16732djsn1ffea7f1fcd8",
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
-  const response= await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=toyota&year=2018',{headers:headers}
+  const response= await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&limit=${limit}&fuel=${fuel}&model=${model}`,{headers:headers}
 )
 const result = await response.json()
 return result;}
@@ -39,4 +39,15 @@ url.searchParams.append('modelYear',`${year}`)
 url.searchParams.append('angle',`${angle}`)
 return `${url}`
 
+}
+export const updateSearchParams=(type:string,value:string)=>{
+  const urlParams= new URLSearchParams(window.location.search)
+  // if(type){
+    urlParams.set(type,value)
+  // }
+  // if(value){
+    // urlParams.set("value",value)
+  // }
+  const newPathName=`${window.location.pathname}?${urlParams.toString()}`
+return newPathName
 }
